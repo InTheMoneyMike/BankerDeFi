@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CSS Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Syne:wght@434&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #BB2423;
+            overflow: hidden;
+            max-height: 100vh;
+        }
+
+        /* Style the header */
+        header {
+            background-color: #f1f1f1;
+            width: 100vw;
+            padding: 10px;
+            text-align: center;
+            font-size: 35px;
+            color: black;
+            margin-bottom: 40px;
+            max-height: 100px;
+            visibility: hidden;
+            padding-top: -20px;
+        }
+
+        /* Create two columns/boxes that floats next to each other */
+        nav {
+            float: left;
+            width: 10%;
+            height: 300px;
+            /* only for demonstration, should be removed */
+            padding: 20px;
+        }
+
+        /* Style the list inside the menu */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        article {
+            float: left;
+            padding: 20px;
+            width: 90%;
+            background-color: #f1f1f1;
+            min-height: 100vh;
+            border-top-left-radius: 20px;
+            /* only for demonstration, should be removed */
+        }
+
+        /* Clear floats after the columns */
+        section::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Style the footer */
+        footer {
+            background-color: #777;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        .login {
+            min-width: 100vw;
+            min-height: 100vh;
+            padding: 20px 0;
+            float: auto;
+            width: 100%;
+            overflow: none;
+            width: 50%;
+            padding: 10px;
+            vertical-align: middle;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 12%;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: fit-content;
+        }
+
+        .walletaddress {
+            border-style: solid;
+            border-width: 2px;
+            border-radius: 90px;
+            border-color: #777;
+            max-width: fit-content;
+            max-height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: fit-content;
+            padding-left: 20px;
+            padding-right: 0px;
+
+        }
+
+        /* FONTS 
+        font-family: 'Questrial', sans-serif;
+        font-family: 'Syne', sans-serif;
+        */
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 100;
+            color: white
+        }
+
+        h3 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 100;
+            color: white;
+            max-height: 10;
+        }
+
+        p {
+            font-family: 'Questrial', sans-serif;
+            color: black;
+            font-size: 15px;
+        }
+
+        /* BUTTONS */
+
+        /* CSS */
+        .button-17 {
+            align-items: center;
+            appearance: none;
+            background-color: #fff;
+            border-radius: 24px;
+            border-style: none;
+            box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px, rgba(0, 0, 0, .14) 0 6px 10px 0, rgba(0, 0, 0, .12) 0 1px 18px 0;
+            box-sizing: border-box;
+            color: #3c4043;
+            cursor: pointer;
+            display: inline-flex;
+            fill: currentcolor;
+            font-family: 'Questrial', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            height: 48px;
+            justify-content: center;
+            letter-spacing: .25px;
+            line-height: normal;
+            max-width: 100%;
+            overflow: visible;
+            padding: 2px 24px;
+            position: relative;
+            text-align: center;
+            text-transform: none;
+            transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1), opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            width: auto;
+            will-change: transform, opacity;
+            z-index: 0;
+        }
+
+        .button-17:hover {
+            background: #F6F9FE;
+            color: #174ea6;
+        }
+
+        .button-17:active {
+            box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+            outline: none;
+        }
+
+        .button-17:focus {
+            outline: none;
+            border: 2px solid #4285f4;
+        }
+
+        .button-17:not(:disabled) {
+            box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+        }
+
+        .button-17:not(:disabled):hover {
+            box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+        }
+
+        .button-17:not(:disabled):focus {
+            box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+        }
+
+        .button-17:not(:disabled):active {
+            box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+        }
+
+        .button-17:disabled {
+            box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+        }
+
+        /* button end */
+
+        /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+        @media (max-width: 600px) {
+
+            nav,
+            article {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        /* rows */
+        .column {
+            float: left;
+            width: 33.33%;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Should be removed. Only for demonstration */
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: fit-content;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="headerA">
+        <div class="row">
+            <div class="column">
+                <P>ANA 0.0</P>
+            </div>
+            <div class="column">
+                <img src="/imgs/ANA.png" style="height: 75px; width: 75px;"></img>
+            </div>
+            <div class="column">
+                <div class="walletaddress">
+                    <P id="wallet" style="margin-right: 20px; float: left;"></P>
+                    <img id="profilePic" style="float: right; height: 30px; width: 30px; margin-right: 10px;"
+                        src="/imgs/ANA30.png"></img>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="logindiv" class="login">
+        <h1 style="text-align: center;">Welcome to Banker DeFi</h1>
+        <div class="center">
+            <button class="button-17" role="button" id="btn-login" style="min-width: 230px">login</button>
+            <button id="btn-logout">reset</button>
+        </div>
+        <script src="main.js"></script>
+    </div>
+
+    <section>
+        <nav>
+            <ul>
+                <li>
+                    <h3>Banks</h3>
+                </li>
+                <li>
+                    <h3 style="opacity: 30%;">ANA</h3>
+                </li>
+                <li>
+                    <h3 style="opacity: 30%;">Managers</h3>
+                </li>
+            </ul>
+        </nav>
+
+        <article>
+            <h1 style="color:#BB2423">Welcome Beta Testers!</h1>
+            <p>The objective for the initial launch of the beta is to successfully onboard those who want to
+                participate. By establishing the first round of users, we can build out interactions and find bugs
+                before we hit the masses.<br><br>
+
+                Thank you all for your participation, it will not go unnoticed</p>
+            <button id="btn-set">test</button>
+        </article>
+    </section>
+
+
+</body>
+
+</html>
